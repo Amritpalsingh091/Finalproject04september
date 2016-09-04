@@ -1,0 +1,89 @@
+create table student(id integer primary key,name varchar(20) not null, address varchar(20));
+insert into student values(1,'singh', 'at 7');
+select * from student;
+drop table student;
+Create table Cities (
+		City_ID  integer primary key,
+		City_name varchar(20) ,
+		City_size integer,
+		Constraint check_size  CHECK(City_size>=0));
+
+		Create table Team (
+Team_ID  integer primary key,
+Team_name varchar(20) ,
+City_ID integer,
+Nb_players integer,
+Foreign key(City_ID) references Cities(City_ID),
+	Constraint check_nb_players CHECK(Nb_players>=0));
+
+	
+	Create table Player (
+Player_ID  integer primary key,
+Player_FN varchar(20) ,
+Player_LN varchar(20) ,
+Team_ID integer,
+DOB date,
+Score integer,
+Position varchar(20),
+Foreign key(Team_ID) references Team(Team_ID),
+Constraint check_Score CHECK(Score>=0),
+Constraint check_Position CHECK (Position in ('back','front','center')));
+
+Insert into Cities(City_ID,City_name,City_size) values(1,'MONTREAL',500);
+Insert into Cities(City_ID,City_name,City_size) values(2,'TORONTO',600);
+Insert into Cities(City_ID,City_name,City_size) values(3,'OTTAWA',550);
+Insert into Cities(City_ID,City_name,City_size) values(4,'LONDON',700);
+Insert into Cities(City_ID,City_name,City_size) values(5,'HAMILTON',300);
+
+Insert into Team(Team_ID,Team_name,Nb_players ,City_ID)values(11,'AVENGERS',11,1);
+Insert into Team(Team_ID,Team_name,Nb_players ,City_ID)values(12,'KINGSXI',11,2);
+Insert into Team(Team_ID,Team_name,Nb_players ,City_ID)values(13,'ROYALS',11,3);
+Insert into Team(Team_ID,Team_name,Nb_players ,City_ID)values(14,'RCB',11,4);
+Insert into Team(Team_ID,Team_name,Nb_players ,City_ID)values(15,'SPARTANS',11,5);
+Insert into Team(Team_ID,Team_name,Nb_players ,City_ID)values(16,'CHELSEA',11,1);
+Insert into Team(Team_ID,Team_name,Nb_players ,City_ID)values(17,'MANU',11,2);
+Insert into Team(Team_ID,Team_name,Nb_players ,City_ID)values(18,'DAREDEVILS',11,3);
+Insert into Team(Team_ID,Team_name,Nb_players  ,City_ID)values(19,'AMIGOS',11,4);
+Insert into Team(Team_ID,Team_name,Nb_players ,City_ID)values(20,'XY',11,5);
+
+
+
+Insert into Player values(1,'Gurvinder','Saini',11,'1992-10-15',13,'front'); 
+Insert into Player values(2,'Sandeep','Saini',12,'1992-10-15',23,'back'); 
+Insert into Player values(3,'Sahni','Saini',13,'1992-10-15',43,'front'); 
+Insert into Player values(4,'Amritpal','Singh',14,'1992-10-15',45,'center'); 
+Insert into Player values(5,'Amrit','Saini',15,'1992-10-15',67,'front'); 
+Insert into Player values(6,'Vibhu','Saini',16,'1992-10-15',89,'front'); 
+Insert into Player values(7,'Neeraj','Saini',17,'1992-10-15',98,'center'); 
+Insert into Player values(8,'Niraj','Saini',18,'1992-10-15',12,'front'); 
+Insert into Player values(9,'Davinder','Saini',19,'1992-10-15',13,'back'); 
+Insert into Player values(10,'Kapil','Saini',20,'1992-10-15',135,'front'); 
+Insert into Player values(11,'Arsh','Saini',11,'1992-10-15',153,'back'); 
+Insert into Player values(12,'Shivam','Saini',12,'1992-10-15',163,'front'); 
+Insert into Player values(13,'Zied','Saini',13,'1992-10-15',173,'center'); 
+Insert into Player values(14,'Reza','Saini',14,'1992-10-15',183,'front'); 
+Insert into Player values(15,'Supriya','Saini',15,'1992-10-15',413,'back'); 
+
+select * from Cities;
+
+
+Select Team_ID from Team  where City_ID =2;
+Select Player_ID,Player_FN from Player  where Team_ID =12;
+
+UPDATE Cities SET City_size=800 where City_ID =2;
+UPDATE Team SET Nb_players=12 where Team_ID=13;
+UPDATE Player SET Score=12 where Player_ID=4;
+DELETE from Player where Player_ID = 12;
+select * from Team;
+select * from Player;
+
+
+
+
+
+
+
+
+
+
+
